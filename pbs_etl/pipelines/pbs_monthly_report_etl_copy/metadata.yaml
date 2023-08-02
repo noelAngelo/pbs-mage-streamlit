@@ -1,0 +1,91 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - add_audit_processed_timestamp
+  - summary_overview_for_pbs_monthly_supply_report
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: pbs_monthly_supply_report
+  retry_config: null
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: pbs_monthly_supply_report
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - ingest_monthly_supply_report
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: add_audit_processed_timestamp
+  retry_config: null
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - pbs_monthly_supply_report
+  uuid: add_audit_processed_timestamp
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ingest_monthly_supply_report
+  retry_config: null
+  status: executed
+  type: data_exporter
+  upstream_blocks:
+  - add_audit_processed_timestamp
+  uuid: ingest_monthly_supply_report
+callbacks: []
+concurrency_config: {}
+conditionals: []
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+name: pbs_monthly_report_etl_copy
+notification_config: {}
+retry_config: {}
+spark_config: {}
+tags: []
+type: python
+updated_at: '2023-08-02 09:02:23'
+uuid: pbs_monthly_report_etl_copy
+variables:
+  monthly_supply_report_url: https://www.pbs.gov.au/statistics/dos-and-dop/files/dos-jul-2018-to-apr-2023.csv
+  target_schema: public
+widgets:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    chart_type: table
+    group_by:
+    - GOVT_CONTRIB
+    height: 3000
+    index: stats
+    width_percentage: '1'
+    x: headers
+    y: rows
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: summary overview for pbs_monthly_supply_report
+  retry_config: null
+  status: executed
+  type: chart
+  upstream_blocks:
+  - pbs_monthly_supply_report
+  uuid: summary_overview_for_pbs_monthly_supply_report

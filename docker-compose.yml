@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d dagster -U dagster" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"

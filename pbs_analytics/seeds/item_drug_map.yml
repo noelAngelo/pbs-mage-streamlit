@@ -1,0 +1,16 @@
+version: 2
+
+seeds:
+  - name: item_drug_map
+    description: This file provides generic drug names associated with each item code in the reports
+    docs:
+      show: true
+    columns:
+      - name: ITEM_CODE
+        description: A unique 6-character alphanumeric code is assigned to items listed on the Schedule of Pharmaceutical Benefits Scheme
+      - name: DRUG_NAME
+        description: The name of the drug
+      - name: FORM/STRENGTH
+        description: The form or strength of the drug
+      - name: ATC5_Code
+        description: The ATC 5th level

@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: pbs
+    description: >
+      The Pharmaceutical Benefits Scheme (PBS) began as a limited scheme in 1948, 
+      with free medicines for pensioners and a list of 139 ‘life-saving and disease 
+      preventing’ medicines free of charge for others in the community.
+    database: postgres
+    schema: public
+
+    tables:
+      - name: raw_monthly_supply_report
+        description: >
+          These reports contain summarised information on the number of prescriptions, 
+          total cost, government and patient contributions to total cost, 
+          and the derived pharmacy mark-up for PBS and RPBS Section 85 prescriptions supplied 
+          in Australia. From 1 January 2016, the data also includes the net amount paid by the patient.
+        columns:
+          - name: month_of_supply
+            description: The year and month of processing or supply (depending on the report), in “YYYYMM” format.
+            data_type: INTEGER
+          - name: item_code
+            description: A unique 6-character alphanumeric code is assigned to items listed on the Schedule of Pharmaceutical Benefits Scheme.
+            data_type: TEXT
+          - name: patient_cat
+            description: The patient category.
+            data_type: TEXT
+          - name: script_type
+            description: The script type
+            data_type: TEXT
+          - name: prescriptions
+            description: The total number of prescriptions for the relevant patient category and item code which were either supplied or processed (depending on the report) during the relevant month.
+            data_type: INTEGER
+          - name: patient_contrib
+            description: The portion of the total cost of the prescriptions which was paid by patients, in dollars, to two decimal places.
+            data_type: DOUBLE PRECISION
+          - name: govt_contrib
+            description: The portion of the total cost of the prescriptions which was paid by the Government, in dollars, to two decimal places.
+            data_type: DOUBLE PRECISION
+          - name: total_cost
+            description: The total cost of the prescriptions, in dollars, to two decimal places.
+            data_type: DOUBLE PRECISION
+          - name: prem_free_disp_incent
+            description: Premium Free Dispensing Incentive. This is an amount paid by the Government to the Pharmacy when a Generic version of the medicine is dispensed.
+            data_type: DOUBLE PRECISION
+          - name: retail_markup
+            description: The retail mark-up amount as calculated using the formula specified in the relevant Community Pharmacy Agreement (CPA), in dollars, to two decimal places.
+            data_type: DOUBLE PRECISION
+          - name: patient_net_contrib
+            description: The actual patient contribution, in dollars and cents.
+            data_type: DOUBLE PRECISION
+          - name: processed_timestamp
+            description: The timestamp as to when the data was ingested into Postgres.
+            data_type: TIMESTAMP WITHOUT TIME ZONE
