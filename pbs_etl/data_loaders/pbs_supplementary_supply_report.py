@@ -12,7 +12,7 @@ def load_data_from_api(*args, **kwargs):
     """
     Template for loading data from API
     """
-    url = kwargs['monthly_supply_report_url']
+    url = kwargs['supplementary_supply_report_url']
     response = requests.get(url)
 
     return pd.read_csv(io.StringIO(response.text), sep=',')

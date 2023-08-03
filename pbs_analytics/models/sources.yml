@@ -8,6 +8,7 @@ sources:
       preventing’ medicines free of charge for others in the community.
     database: postgres
     schema: public
+    loader: mage.ai
 
     tables:
       - name: raw_monthly_supply_report
@@ -52,4 +53,35 @@ sources:
             data_type: DOUBLE PRECISION
           - name: processed_timestamp
             description: The timestamp as to when the data was ingested into Postgres.
+            data_type: TIMESTAMP WITHOUT TIME ZONE
+      
+      - name: raw_supplementary_supply_report
+        description: >
+          This report is updated quarterly. This report includes the additional fields of drug type and approval type of dispensing pharmacy for the current financial year to date.
+        columns:
+          - name: month_of_supply
+            data_type: INTEGER
+          - name: item_code
+            data_type: TEXT
+          - name: drug_type
+            data_type: TEXT
+          - name: patient_cat
+            data_type: TEXT
+          - name: phrmcy_type
+            data_type: TEXT
+          - name: script_type
+            data_type: TEXT
+          - name: prescriptions
+            data_type: INTEGER
+          - name: patient_contrib
+            data_type: DOUBLE PRECISION
+          - name: govt_contrib
+            data_type: DOUBLE PRECISION
+          - name: total_cost
+            data_type: DOUBLE PRECISION
+          - name: retail_markup
+            data_type: DOUBLE PRECISION
+          - name: patient_net_contrib
+            data_type: DOUBLE PRECISION
+          - name: processed_timestamp
             data_type: TIMESTAMP WITHOUT TIME ZONE

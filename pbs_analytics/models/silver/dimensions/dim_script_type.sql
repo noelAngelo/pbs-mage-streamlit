@@ -14,6 +14,7 @@ renamed as (
 model as (
     select
         *,
+        -- different script types
         case 
             when script_type_id = 'UNDER CO-PAYMENT' then 'Scripts where the government contribution is zero'
             when script_type_id = 'ABOVE CO-PAYMENT' then 'Scripts where cost is above the threshold of the PBS co-payment amount in each year'

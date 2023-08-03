@@ -14,6 +14,7 @@ renamed as (
 model as (
     select
         *,
+        -- different patient categories
         case
             when patient_category_id = 'C0' then 'Concessional safety net'
             when patient_category_id = 'C1' then 'Concessional non-safety net'
